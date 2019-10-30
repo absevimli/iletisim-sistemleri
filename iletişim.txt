@@ -1,0 +1,55 @@
+#include <stdio.h>
+ 
+int main()
+{
+    int sayi = 0;
+    int pid;
+ 
+    printf("sayi giriniz :");
+    scanf("%d", &sayi);
+    for(;;)
+    {
+       if(sayi <= 0)
+      {
+            printf("pozitif sayi giriniz:");
+            scanf("%d", &sayi);
+      }
+      else if(sayi>0)
+      {
+        break;
+      }
+    }
+ 
+    pid = fork();
+
+    if(pid == 0)
+    {
+      printf("gorev calisiyor\n");
+        printf("%d\n",sayi);
+        do
+        {
+        if(sayi%2 != 0)
+        {
+          sayi = (sayi*3)+1;
+        }
+         
+        else if(sayi%2 == 0)
+        {
+          sayi = sayi/2;
+        }
+ 
+        printf("%d \n",sayi);
+        }while(sayi != 1);
+        printf("görev sonlandi\n");
+    }
+ 
+    else
+    {
+ 
+        printf("pid:%d \n",pid);
+    printf("gorevin bitmesi bekleniyor\n");
+      wait();  
+      }     
+
+return 0;   
+}
